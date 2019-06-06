@@ -1,5 +1,7 @@
 #!/usr/bin/python
 
+''' Test the model on a separate test data set'''
+
 from utils import *
 from train import *
 import os,sys

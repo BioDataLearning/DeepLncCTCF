@@ -1,5 +1,7 @@
 #!/usr/bin/python
 
+'''Build and evaluate the model'''
+
 from utils import *
 import os,sys
 import argparse

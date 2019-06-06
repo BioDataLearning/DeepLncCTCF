@@ -1,5 +1,7 @@
 #!/usr/bin/python
 
+'''Visualize filters as PWMs and get filter activities, modified based on DanQ code for motif visualizaiton''' 
+
 from utils import *
 from train import *
 import os,sys

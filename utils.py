@@ -1,5 +1,7 @@
 #!/usr/bin/python
 
+'''Data preprocessing and performane metrics calculation'''
+
 import os,sys
 from Bio import SeqIO
 import numpy as np

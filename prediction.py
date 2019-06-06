@@ -1,5 +1,7 @@
 #!/usr/bin/python
 
+'''Predict on novel data'''
+
 from utils import *
 from train import *
 import os,sys
