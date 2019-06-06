@@ -22,26 +22,26 @@ CGGCCUCCCCAGCGCAGGGCUCCUCGUUUGAGGGGAGGUGACUUCCCUCCCAGCAGGCUCUUGGACACAGUAAGCUUCCC
 ## Training and Evaluation
 Our data for constructing the model are available in the Data directory. If you want to train your own model with DeepLncCTCF, you can just substitute the input with your own data. The command line to train and evaluate DeepLncCTCF as follows:
 ```
-$ python train.py -f human.positive.seq -n human.negative.seq -o human.output
+$ python train.py -f human_positive_seq.fa -n human_negative_seq.fa -o human.output
 ```
 During the training, the best weights will be automatically stored in a "hdf5" file. Our fully trained model have been uploaded in the Weights directory.
 
 ## Testing 
 If you want to evaluate the model on a separate test data, first, you can run the following command line:
 ```
-$ python test.py -f test.positive.seq -n test.negative.seq -o test.output
+$ python test.py -f test_positive_seq.fa -n test_negative_seq.fa -o test.output
 ```
 Please make sure to download the "hdf5" file in the Weights directory or generate your own best weights.
 
 ## Motif Visualization
 If you want to visualize the kernals of the first convolution layer and get its frequency and location information, you can run the following command line：
 ```
-$ python get_motifs.py -f human.positive.seq -n human.negative.seq
+$ python get_motifs.py -f human_positive_seq.fa -n human_negative_seq.fa
 ```
 Same as the Testing process, "hdf5" file with the best weights is needed. 
 
 ## Predicting CTCF-binding RNA sites on lncRNAs
 We applied the trained DeepLncCTCF model to predict CTCF-binding RNA sites on human lncRNAs, which were further used to select candidate CTCF-binding lncRNAs. To predict the CTCF-binding RNA sites on lncRNAs using trained DeepLncCTCF model, you can run the following command line:
 ```
-$ python prediction.py -f lncRNA.seq -o prediction.output
+$ python prediction.py -f lncRNA_seq.fa -o prediction.output
 ```
