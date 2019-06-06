@@ -50,7 +50,7 @@ def get_motifs(model,X,Y,output_dir,output_dir2,label):
                 if acts[n, j, m] > thr_per * max_motif[m]:
                     nsites[m] += 1
                     motifs[m] += X_pos[n, j:j+window, :]
-                    loc_file.write("M%i %s %i %i\n" % (m, j, j+window))    
+                    loc_file.write("M%i %i %i\n" % (m, j, j+window))    
 
     for m in range(num_motifs):
         act_file.write("M%i" % (m))
