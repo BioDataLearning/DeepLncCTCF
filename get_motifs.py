@@ -1,7 +1,5 @@
 #!/usr/bin/python
 
-'''Visualize filters as PWMs and get filter activities, modified based on DanQ code for motif visualizaiton''' 
-
 from utils import *
 from train import *
 import os,sys
@@ -72,8 +70,6 @@ def get_motifs(model,X,Y,output_dir,output_dir2,label):
                     seqfile.write('\n')
                     seqfile.write(kmer)
                     seqfile.write('\n')
-        filename = output_dir2+'motif'+str(m)+'.fasta'
-        plot_motif(output_dir2,m,filename)            
 
     print('Making motifs')
     motifs = motifs[:, :, [0, 3, 2, 1]]
@@ -91,6 +87,14 @@ def get_motifs(model,X,Y,output_dir,output_dir2,label):
         for j in range(window):
             motifs_file.write("%f %f %f %f\n" % tuple(1.0 * motifs[m, j, 0:4] / np.sum(motifs[m, j, 0:4])))
         motifs_file.write('\n')
+    
+    return num_motifs
+
+
+def get_motif_logo(output_dir,num_motifs):
+    for m in range(num_motifs):
+        filename = output_dir+'motif'+str(m)+'.fasta'
+        plot_motif(output_dir,m,filename)
 
 def one_hot_to_seq(matrix):
     nts = ['A','U','G','C']
@@ -121,13 +125,14 @@ def main():
     infile = args.fasta
     secondin = args.negative
     X_train,X_val,X_test,Y_train,Y_val,Y_test = get_data(infile,secondin)
-    best = {'batch_size': 7.0, 'dense_unit': 784.0, 'drop_out_cnn': 0.46700349282456455, 'drop_out_lstm': 0.45445161526885014, 'filter': 112.0, 'kernel_initializer': 'glorot_normal', 'l2_reg': 3.5109491470074096e-05, 'learning_rate': 0.0019135917105472034, 'lstm_unit': 256.0, 'pool_size': 5.0, 'window_size': 15.0}
+    best = {'batch_size': 4.0, 'dense_unit': 80.0, 'drop_out_cnn': 0.2738070724985381, 'drop_out_lstm': 0.16261503928101084, 'filter': 128.0, 'kernel_initializer': 'random_uniform', 'l2_reg': 1.0960198460047699e-05, 'learning_rate': 0.00028511592517082153, 'lstm_unit': 624.0, 'pool_size': 3.0, 'window_size': 9.0}
     dnn_model = get_model(best)
     dnn_model.load_weights('human.bestmodel.hdf5')
     output_dir = 'motifs/'
     output_dir2 = 'motifs_logo/'
-    get_motifs(dnn_model,X_test,Y_test,output_dir,output_dir2,0)
-    get_motifs(dnn_model,X_test,Y_test,output_dir,output_dir2,1)
+    num_motifs = get_motifs(dnn_model,X_test,Y_test,output_dir,output_dir2,0)
+    num_motifs = get_motifs(dnn_model,X_test,Y_test,output_dir,output_dir2,1)
+    get_motif_logo(output_dir2,num_motifs)
 
 if __name__ == '__main__':
         main()

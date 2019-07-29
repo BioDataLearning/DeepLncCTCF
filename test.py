@@ -1,7 +1,5 @@
 #!/usr/bin/python
 
-''' Test the model on a separate test data set'''
-
 from utils import *
 from train import *
 import os,sys
@@ -11,7 +9,7 @@ np.random.seed(12345)
 def test(infile,infile2,outfile):    
     fileout = open(outfile, "w")
     X, Y = get_test_data(infile,infile2)
-    best = {'batch_size': 7.0, 'dense_unit': 784.0, 'drop_out_cnn': 0.46700349282456455, 'drop_out_lstm': 0.45445161526885014, 'filter': 112.0, 'kernel_initializer': 'glorot_normal', 'l2_reg': 3.5109491470074096e-05, 'learning_rate': 0.0019135917105472034, 'lstm_unit': 256.0, 'pool_size': 5.0, 'window_size': 15.0}
+    best = {'batch_size': 4.0, 'dense_unit': 80.0, 'drop_out_cnn': 0.2738070724985381, 'drop_out_lstm': 0.16261503928101084, 'filter': 128.0, 'kernel_initializer': 'random_uniform', 'l2_reg': 1.0960198460047699e-05, 'learning_rate': 0.00028511592517082153, 'lstm_unit': 624.0, 'pool_size': 3.0, 'window_size': 9.0}
     dnn_model = get_model(best)
     filepa = "human.bestmodel.hdf5"
     dnn_model.load_weights(filepa)
