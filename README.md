@@ -27,7 +27,7 @@ $ python train.py -f human_positive_seq.fa -n human_negative_seq.fa -o human.out
 During the training, the best weights will be automatically stored in a "hdf5" file. Our fully trained model have been uploaded in the Weights directory.
 
 ## Testing 
-If you want to evaluate the model on a separate test data, first, you can run the following command line:
+If you want to evaluate the model on a separate test data, you can run the following command line:
 ```
 $ python test.py -f test_positive_seq.fa -n test_negative_seq.fa -o test.output
 ```

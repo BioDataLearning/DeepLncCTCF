@@ -1,5 +1,9 @@
 #!/usr/bin/python
 
+"""Visualizes and analyzes filter motifs.
+The code are based on Daniel Quang's code (https://github.com/uci-cbcl/FactorNet/blob/master/visualize.py) for motif visualizaiton. 
+"""
+
 from utils import *
 from train import *
 import os,sys
